@@ -2,7 +2,7 @@
 
 Все мы любим автомобильное шоу №1 в мире - Top Gear.
 Здесь собраны 25 смешных цитат его ведущего Джереми Кларксона
-о разных авто. Попробуйте: https://mikhail-z.github.io/20_mood/index.html
+о разных авто. Попробуйте: https://mikhail-z.github.io/20_mood/
 
 # Project Goals
 

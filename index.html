@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
+<meta charset="UTF-8">
 <head>
   <title>Настроение</title>
-  <script id="quotes_json" type="application/json">
-    [
-      {
-        "phrase": "Кукурузные хлопья - теперь без асбеста!",
-        "signature": "©Неизвестный маркетолог"
-      },
-      {
-        "phrase": "Собираюсь жить вечно, пока всё идёт нормально"
-      },
-      {
-        "phrase": "Вывеска над кафе — '\u003cМы открылись\u003e'. Что-то не так. Где же '\u003c/Мы открылись\u003e'?"
-      },
-      {
-        "phrase": "Если ты будешь усердно работать по 8 часов в день, то обязательно станешь боссом и начнешь работать по 12"
-      }
-    ]
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="css/my.css" rel="stylesheet">
+
+  <script id="quotes_json" type="application/json" src="js/phrases.json"></script>
 </head>
 <body>
+  <h2 style="color: ghostwhite; text-align: center">Лучшие цитаты Джереми Кларксона об автомобилях</h2>
+  <div id="phrase_with_car">
+      <br>
+      <br>
+      <br>
+      <ul class="pager">
+        <li id="previous"><a href="#">Предыдущая</a></li>
+        <li id="next"><a href="#">Следующая</a></li>
+      </ul>
+  </div>
+
+  <script src="js/phrases_generator.js"></script>
 </body>
 </html>

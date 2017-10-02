@@ -10,7 +10,7 @@ body {
 }
 
 
-#phrase_with_car {
+.phrase_with_car {
   position: absolute;
   top: 30%;
   margin: auto;
@@ -19,7 +19,7 @@ body {
   height: 30%;
 }
 
-#phrase {
+.phrase {
   top: 0;
   bottom: 0;
   left: 0;
@@ -31,7 +31,7 @@ body {
   margin: auto;
 }
 
-#car {
+.car {
   top: 0;
   bottom: 0;
   left: 0;

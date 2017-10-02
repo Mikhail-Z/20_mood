@@ -2,6 +2,11 @@
 var CURRENT_PHRASE_NUM = 0;
 var JSON_DATA_LIST = [];
 
+//для production конфигурации
+console.log = function() {};
+console.error = function() {};
+
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -12,51 +17,51 @@ function insertAfter(newNode, referenceNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-function dataChanger(json) {
+function textCreator(json) {
   var phrase_with_car = json[CURRENT_PHRASE_NUM];
   var phrase = document.createElement("p");
-  phrase.id = "phrase";
+  phrase.className = "phrase";
   phrase.innerText = phrase_with_car.phrase;
-  document.getElementById("phrase_with_car").insertBefore(phrase, document.getElementsByClassName("pager")[0]);
+  document.getElementsByClassName("phrase_with_car")[0].insertBefore(phrase, document.getElementsByClassName("pager")[0]);
   var lineBreak = document.createElement("br");
   insertAfter(lineBreak, phrase);
   var car = document.createElement("p");
-  car.id = "car";
+  car.className = "car";
   car.innerText = phrase_with_car.car;
-  document.getElementById("phrase_with_car").insertBefore(car, document.getElementsByClassName("pager")[0]);
+  document.getElementsByClassName("phrase_with_car")[0].insertBefore(car, document.getElementsByClassName("pager")[0]);
 
 }
 
 $.getJSON("js/phrases.json", function(json) {
   CURRENT_PHRASE_NUM = getRandomInt(0, json.length);
   JSON_DATA_LIST = json;
-  dataChanger(json);
+  textCreator(json);
 });
 
 
-function getNextPhrase() {
+function showNextPhrase() {
   CURRENT_PHRASE_NUM = (CURRENT_PHRASE_NUM+1) % JSON_DATA_LIST.length;
   console.log(CURRENT_PHRASE_NUM);
-  document.getElementById("phrase").innerText = JSON_DATA_LIST[CURRENT_PHRASE_NUM].phrase;
-  document.getElementById("car").innerText = JSON_DATA_LIST[CURRENT_PHRASE_NUM].car;
+  document.getElementsByClassName("phrase")[0].innerText = JSON_DATA_LIST[CURRENT_PHRASE_NUM].phrase;
+  document.getElementsByClassName("car")[0].innerText = JSON_DATA_LIST[CURRENT_PHRASE_NUM].car;
 }
 
-function getPrevousPhrase() {
+function showPreviousPhrase() {
   if (CURRENT_PHRASE_NUM === 0)
     CURRENT_PHRASE_NUM = JSON_DATA_LIST.length-1;
   else
     CURRENT_PHRASE_NUM = (CURRENT_PHRASE_NUM-1) % JSON_DATA_LIST.length;
   console.log(CURRENT_PHRASE_NUM);
-  document.getElementById("phrase").innerText = JSON_DATA_LIST[CURRENT_PHRASE_NUM].phrase;
-  document.getElementById("car").innerText = JSON_DATA_LIST[CURRENT_PHRASE_NUM].car;
+  document.getElementsByClassName("phrase")[0].innerText = JSON_DATA_LIST[CURRENT_PHRASE_NUM].phrase;
+  document.getElementsByClassName("car")[0].innerText = JSON_DATA_LIST[CURRENT_PHRASE_NUM].car;
 }
 
 $('#previous').click(function() {
-  getPrevousPhrase()
+  showPreviousPhrase()
 });
 
 $('#next').click(function() {
-  getNextPhrase()
+  showNextPhrase()
 });
 
 window.addEventListener("keydown", function (event) {
@@ -66,16 +71,16 @@ window.addEventListener("keydown", function (event) {
 
   switch (event.key) {
     case "ArrowDown":
-      getPrevousPhrase();
+      showPreviousPhrase();
       break;
     case "ArrowUp":
-      getNextPhrase();
+      showNextPhrase();
       break;
     case "ArrowLeft":
-      getPrevousPhrase();
+      showPreviousPhrase();
       break;
     case "ArrowRight":
-      getNextPhrase();
+      showNextPhrase();
       break;
   }
 });

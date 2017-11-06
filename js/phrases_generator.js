@@ -2,7 +2,7 @@
 var CURRENT_PHRASE_NUM = 0;
 var JSON_DATA_LIST = [];
 
-//для production конфигурации
+//для production конфигурации. Для Debug скофигурации закомментировать эти 2 строчки
 console.log = function() {};
 console.error = function() {};
 
@@ -17,7 +17,7 @@ function insertAfter(newNode, referenceNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-function textCreator(json) {
+function insertTextOnPage(json) {
   var phrase_with_car = json[CURRENT_PHRASE_NUM];
   var phrase = document.createElement("p");
   phrase.className = "phrase";
@@ -35,7 +35,7 @@ function textCreator(json) {
 $.getJSON("js/phrases.json", function(json) {
   CURRENT_PHRASE_NUM = getRandomInt(0, json.length);
   JSON_DATA_LIST = json;
-  textCreator(json);
+  insertTextOnPage(json);
 });
 
 

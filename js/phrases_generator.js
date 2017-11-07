@@ -1,11 +1,13 @@
+DEBUG_ENABLED = false;
+myStorage = window.localStorage;
+isDebugMode = myStorage.getItem("DEBUG");
+
+if (isDebugMode == "true")
+  DEBUG_ENABLED = true;
+
 
 var CURRENT_PHRASE_NUM = 0;
 var JSON_DATA_LIST = [];
-
-//для production конфигурации. Для Debug скофигурации закомментировать эти 2 строчки
-console.log = function() {};
-console.error = function() {};
-
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -41,7 +43,8 @@ $.getJSON("js/phrases.json", function(json) {
 
 function showNextPhrase() {
   CURRENT_PHRASE_NUM = (CURRENT_PHRASE_NUM+1) % JSON_DATA_LIST.length;
-  console.log(CURRENT_PHRASE_NUM);
+  if (DEBUG_ENABLED == true)
+    console.log(CURRENT_PHRASE_NUM);
   document.getElementsByClassName("phrase")[0].innerText = JSON_DATA_LIST[CURRENT_PHRASE_NUM].phrase;
   document.getElementsByClassName("car")[0].innerText = JSON_DATA_LIST[CURRENT_PHRASE_NUM].car;
 }
@@ -51,7 +54,8 @@ function showPreviousPhrase() {
     CURRENT_PHRASE_NUM = JSON_DATA_LIST.length-1;
   else
     CURRENT_PHRASE_NUM = (CURRENT_PHRASE_NUM-1) % JSON_DATA_LIST.length;
-  console.log(CURRENT_PHRASE_NUM);
+  if (DEBUG_ENABLED == true)
+    console.log(CURRENT_PHRASE_NUM);
   document.getElementsByClassName("phrase")[0].innerText = JSON_DATA_LIST[CURRENT_PHRASE_NUM].phrase;
   document.getElementsByClassName("car")[0].innerText = JSON_DATA_LIST[CURRENT_PHRASE_NUM].car;
 }
